@@ -27,3 +27,63 @@ body {
 .nav-link {
     font-size: 1.1rem;
 }
+
+.breadcrumb-bg {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/breadcrumb_background.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.breadcrumb-item a {
+    color: #fff;
+}
+
+.breadcrumb-item+.breadcrumb-item::before {
+    float: left;
+    padding-right: var(--bs-breadcrumb-item-padding-x);
+    color: #fff;
+    content: var(--bs-breadcrumb-divider, "/");
+}
+
+.breadcrumb-item.active {
+    color: #f3f3ff;
+}
+
+.breadcrumb-title {
+    color: #fff;
+}
+
+.teacher-skills .badge {
+    background-color: #dcf1e4 !important;
+    color: #0c622e;
+    font-size: 12px;
+}
+
+.short-bio {
+    font-size: 0.9rem;
+}
+
+.login-img img {
+    width: 100%;    
+}
+
+.dashboard .nav-link {
+    font-size: 1rem;
+}
+
+.dashboard-breadcrumb .breadcrumb-item a {
+    color: #333;
+}
+
+.dashboard-breadcrumb .breadcrumb-item+.breadcrumb-item::before {
+    float: left;
+    padding-right: var(--bs-breadcrumb-item-padding-x);
+    color: #333;
+    content: var(--bs-breadcrumb-divider, "/");
+}
+
+.dashboard-breadcrumb .breadcrumb-item.active {
+    color: #929292;
+}
