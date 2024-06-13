@@ -28,23 +28,12 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <img src="images/about_us_image.svg" alt="About Us" class="img-fluid rounded">
+                <img src="uploads/<?= $settings['about_image'] ?>" alt="About Us" class="img-fluid rounded">
             </div>
             <div class="col-md-6">
-                <h2 class="section-title pb-3 mb-3" style="border-bottom: 1px dashed #ddd;">Who We Are</h2>
+                <h2 class="section-title pb-3 mb-3" style="border-bottom: 1px dashed #ddd;"><?= $settings['about_title'] ?></h2>
 
-                <p class="section-text">At Tutor Connect, we believe in the power of personalized education. Our
-                    platform bridges the gap between students and experienced tutors across a variety of subjects. We
-                    provide a platform for students to find the perfect tutor for their needs. Our tutors are
-                    experienced in their respective fields and are dedicated to helping students succeed.</p>
-                <p class="section-text">Our platform is easy to use and allows students to connect with tutors in a
-                    matter of minutes. We offer a wide range of subjects and topics, so you can find the perfect tutor
-                    for your needs. Whether you need help with math, science, history, or any other subject, we have
-                    you covered.</p>
-                <p class="section-text">Our tutors are passionate about helping students succeed and are dedicated to
-                    providing personalized instruction. We believe that every student is unique and deserves a
-                    personalized approach to learning. Our tutors work with students one-on-one to help them achieve
-                    their academic goals.</p>
+                <p class="section-text"><?= htmlspecialchars_decode($settings['about_content']) ?></p>
             </div>
         </div>
     </div>

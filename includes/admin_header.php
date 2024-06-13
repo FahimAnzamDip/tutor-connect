@@ -1,7 +1,14 @@
 <?php session_start(); ?>
 <?php require_once '../database/db.php' ?>
 <?php require_once '../helpers/functions.php' ?>
-<?php require_once '../admin/auth/admin_check.php' ?>
+<?php require_once '../auth/admin_check.php' ?>
+<?php
+// Check if not Admin
+if ($_SESSION['user_role'] != 'Admin') {
+    header('location: ../index.php');
+    exit;
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -27,7 +34,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link pe-0 text-white" href="../admin/auth/logout.php">
+                    <a class="nav-link pe-0 text-white" href="../auth/logout.php">
                         <i class="bi bi-box-arrow-in-left me-1"></i>
                         Logout
                     </a>
@@ -54,16 +61,24 @@
                        href="subjects.php">Subjects</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link <?= str_contains(getPageUrl(), 'reviews') ? 'text-warning fw-medium' : '' ?>"
-                       href="reviews.php">Reviews</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link <?= str_contains(getPageUrl(), 'students') ? 'text-warning fw-medium' : '' ?>"
                        href="students.php">Students</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link <?= str_contains(getPageUrl(), 'teachers') ? 'text-warning fw-medium' : '' ?>"
                        href="teachers.php">Teachers</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <?= str_contains(getPageUrl(), 'messages') ? 'text-warning fw-medium' : '' ?>"
+                       href="messages.php">Messages</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <?= str_contains(getPageUrl(), 'services') ? 'text-warning fw-medium' : '' ?>"
+                       href="services.php">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <?= str_contains(getPageUrl(), 'settings') ? 'text-warning fw-medium' : '' ?>"
+                       href="settings.php">Settings</a>
                 </li>
             </ul>
         </div>

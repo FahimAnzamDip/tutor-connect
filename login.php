@@ -40,7 +40,7 @@ if (isset($_SESSION['user_role'])) {
             <div class="col-md-6">
                 <h2 class="section-title display-6">Welcome back!</h2>
                 <p class="section-desc">Please login to your account or new here? Then please <a
-                            href="registration.php">register</a>....</p>
+                            href="registration.php">Register</a>....</p>
                 <div class="login-img mt-4">
                     <img src="images/login.svg" alt="Login">
                 </div>
@@ -57,7 +57,7 @@ if (isset($_SESSION['user_role'])) {
                 <?php endif; ?>
                 <div class="card border-0 shadow-sm">
                     <div class="card-body bg-light">
-                        <form action="admin/auth/login_process.php" method="POST" class="login-form">
+                        <form action="auth/login_process.php" method="POST" class="login-form">
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email / Username <span
                                             class="text-danger">*</span></label>

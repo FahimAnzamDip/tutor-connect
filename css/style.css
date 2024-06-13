@@ -61,6 +61,12 @@ body {
     font-size: 12px;
 }
 
+.teacher-class .badge {
+    background-color: rgba(13, 202, 240, 0.3) !important;
+    color: #0079af;
+    font-size: 12px;
+}
+
 .short-bio {
     font-size: 0.9rem;
 }

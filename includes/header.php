@@ -1,6 +1,11 @@
 <?php session_start(); ?>
 <?php require_once 'database/db.php' ?>
 <?php require_once 'helpers/functions.php' ?>
+<?php
+$query = "SELECT * FROM settings WHERE id = 1";
+$result = mysqli_query($connection, $query);
+$settings = mysqli_fetch_assoc($result);
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -30,10 +35,13 @@
                     <a class="nav-link <?= getPageUrl() == 'index.php' ? 'active' : '' ?>" href="index.php">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link <?= getPageUrl() == 'teachers.php' ? 'active' : '' ?>" href="teachers.php">Teachers</a>
+                    <a class="nav-link <?= getPageUrl() == 'teachers.php' || getPageUrl() == 'teacher_detail.php' ? 'active' : '' ?>" href="teachers.php">Teachers</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link <?= getPageUrl() == 'about-us.php' ? 'active' : '' ?>" href="about-us.php">About us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <?= getPageUrl() == 'services.php' ? 'active' : '' ?>" href="services.php">Services</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link <?= getPageUrl() == 'contact.php' ? 'active' : '' ?>" href="contact.php">Contact</a>
@@ -62,13 +70,37 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link pe-0 text-white" href="../admin/auth/logout.php">
+                            <a class="nav-link pe-0 text-white" href="../auth/logout.php">
                                 <i class="bi bi-box-arrow-in-left me-1"></i>
                                 Logout
                             </a>
                         </li>
-                    <?php else: ?>
-                        // TODO
+                    <?php elseif ($_SESSION['user_role'] == 'Student'): ?>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="student_dashboard.php">
+                                <i class="bi bi-person me-1"></i>
+                                <?= $_SESSION['user_username'] ?>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link pe-0 text-white" href="../auth/logout.php">
+                                <i class="bi bi-box-arrow-in-left me-1"></i>
+                                Logout
+                            </a>
+                        </li>
+                    <?php elseif ($_SESSION['user_role'] == 'Teacher'): ?>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="teacher_dashboard.php">
+                                <i class="bi bi-person me-1"></i>
+                                <?= $_SESSION['user_username'] ?>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link pe-0 text-white" href="../auth/logout.php">
+                                <i class="bi bi-box-arrow-in-left me-1"></i>
+                                Logout
+                            </a>
+                        </li>
                     <?php endif; ?>
                 <?php endif; ?>
             </ul>

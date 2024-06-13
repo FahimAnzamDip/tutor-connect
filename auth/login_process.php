@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../../database/db.php';
+require_once '../database/db.php';
 
 if (isset($_POST['login'])) {
 
@@ -22,17 +22,29 @@ if (isset($_POST['login'])) {
             $_SESSION['user_username'] = $user['username'];
             $_SESSION['user_password'] = $user['password'];
             $_SESSION['user_email'] = $user['email'];
+            $_SESSION['user_mobile'] = $user['mobile'];
             $_SESSION['user_image'] = $user['avatar'];
             $_SESSION['user_role'] = $user['role'];
 
             if ($_SESSION['user_role'] == 'Admin') {
-                header('location: ../dashboard.php');
+                header('location: ../admin/dashboard.php');
+            } elseif ($_SESSION['user_role'] == 'Student') {
+                header('location: ../student_dashboard.php');
+            } elseif ($_SESSION['user_role'] == 'Teacher') {
+                $query = "SELECT * FROM teachers WHERE user_id = " . $_SESSION['user_id'];
+                $result = mysqli_query($connection, $query);
+                $teacher = mysqli_fetch_assoc($result);
+
+                $_SESSION['teacher_id'] = $teacher['id'];
+                $_SESSION['user_image'] = $teacher['image'];
+
+                header('location: ../teacher_dashboard.php');
             } else {
-                header('location: ../../index.php');
+                header('location: ../index.php');
             }
         } else {
             $_SESSION['login_required'] = "Invalid email/username or password";
-            header('location: ../../login.php');
+            header('location: ../login.php');
         }
     }
 }
