@@ -70,7 +70,7 @@ if ($_SESSION['user_role'] != 'Admin') {
                 </li>
                 <li class="nav-item">
                     <a class="nav-link <?= str_contains(getPageUrl(), 'messages') ? 'text-warning fw-medium' : '' ?>"
-                       href="messages.php">Messages</a>
+                       href="messages.php">Contact messages</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link <?= str_contains(getPageUrl(), 'services') ? 'text-warning fw-medium' : '' ?>"
