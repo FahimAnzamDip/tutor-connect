@@ -276,7 +276,7 @@ if (isset($_POST['rating_submit'])) {
                 <?php else: ?>
                     <div class="modal-body">
                         <div class="alert alert-danger">
-                            You need to login as a student to send a message.
+                            You need to login as a student to send a message. <a href="login.php">Login</a>
                         </div>
                     </div>
                 <?php endif; ?>
