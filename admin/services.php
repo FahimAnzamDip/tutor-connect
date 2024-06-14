@@ -56,11 +56,21 @@ if (isset($_GET['delete'])) {
                 <div class="card border-0 shadow-sm">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-12 mb-4">
+                            <div class="col-md-12 mb-4 d-flex flex-wrap justify-content-between align-items-center">
                                 <a href="services_create.php" class="btn btn-primary">
                                     <i class="bi bi-plus"></i>
                                     Add Service
                                 </a>
+                                <!-- Search -->
+                                <form action="" method="GET" class="d-flex">
+                                    <input type="text" name="search" class="form-control" placeholder="Search..." required value="<?= isset($_GET['search']) ? $_GET['search'] : '' ?>">
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="bi bi-search"></i>
+                                    </button>
+                                    <?php if (isset($_GET['search'])): ?>
+                                        <a href="services.php" class="btn btn-danger"><i class="bi bi-x"></i></a>
+                                    <?php endif; ?>
+                                </form>
                             </div>
                             <div class="col-md-12">
                                 <div class="table-responsive">
@@ -76,7 +86,12 @@ if (isset($_GET['delete'])) {
                                         </thead>
                                         <tbody>
                                         <?php
-                                        $query = "SELECT * FROM services";
+                                        if (isset($_GET['search'])) {
+                                            $search = $_GET['search'];
+                                            $query = "SELECT * FROM services WHERE name LIKE '%$search%' OR description LIKE '%$search%'";
+                                        } else {
+                                            $query = "SELECT * FROM services";
+                                        }
                                         $services = mysqli_query($connection, $query);
                                         ?>
                                         <?php if(mysqli_num_rows($services) > 0): ?>

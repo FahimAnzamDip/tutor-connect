@@ -55,6 +55,19 @@ if (isset($_GET['delete'])) {
                 <div class="card border-0 shadow-sm">
                     <div class="card-body">
                         <div class="row">
+                            <div class="col-md-12 mb-4 d-flex flex-wrap justify-content-between align-items-center">
+                                <div></div>
+                                <!-- Search -->
+                                <form action="" method="GET" class="d-flex">
+                                    <input type="text" name="search" class="form-control" placeholder="Search..." required value="<?= isset($_GET['search']) ? $_GET['search'] : '' ?>">
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="bi bi-search"></i>
+                                    </button>
+                                    <?php if (isset($_GET['search'])): ?>
+                                        <a href="messages.php" class="btn btn-danger"><i class="bi bi-x"></i></a>
+                                    <?php endif; ?>
+                                </form>
+                            </div>
                             <div class="col-md-12">
                                 <div class="table-responsive">
                                     <table class="table table-bordered mb-0">
@@ -71,7 +84,12 @@ if (isset($_GET['delete'])) {
                                         </thead>
                                         <tbody>
                                         <?php
-                                        $query = "SELECT * FROM messages";
+                                        if (isset($_GET['search'])) {
+                                            $search = $_GET['search'];
+                                            $query = "SELECT * FROM messages WHERE name LIKE '%$search%' OR email LIKE '%$search%' OR subject LIKE '%$search%' OR message LIKE '%$search%'";
+                                        } else {
+                                            $query = "SELECT * FROM messages";
+                                        }
                                         $messages = mysqli_query($connection, $query);
                                         ?>
                                         <?php if(mysqli_num_rows($messages) > 0): ?>
